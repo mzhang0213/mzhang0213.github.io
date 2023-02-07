@@ -19,7 +19,7 @@
         }
       }
       const registerServiceWorker = async () => {
-        const swRegistration = await navigator.serviceWorker.register('service.js')
+        const swRegistration = await navigator.serviceWorker.register('/app/sw.js')
         return swRegistration
       }
       const requestNotificationPermission = async () => {
@@ -37,7 +37,7 @@
         const swRegistration = await registerServiceWorker()
         const permission = await requestNotificationPermission()
       }
-      // main(); we will not call main in the beginning.
+      main(); we will not call main in the beginning.
     </script>
   </body>
 </html>
