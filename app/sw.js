@@ -10,6 +10,17 @@ const urlB64ToUint8Array = base64String => {
   }
   return outputArray
 }
+const saveSubscription = async subscription => {
+  const SERVER_URL = 'https://mzhang0213.github.io/save-subscription'
+  const response = await fetch(SERVER_URL, {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(subscription),
+  })
+  return response.json()
+}
 self.addEventListener('activate', async () => {
   // This will be called only once when the service worker is activated.
   try {
