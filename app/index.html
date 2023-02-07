@@ -6,11 +6,17 @@
   </head>
   <body>
     <font style="font-family: 'Cabin';">
-    	hi
     </font>
     <canvas id="canvas"></canvas>
-    <script src="http://code.jquery.com/jquery-2.1.0.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.0.js"></script>
     <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/app/sw.js').then(function(reg) {
+          alert('Yey!', reg);
+        }).catch(function(err) {
+          alert('Boo!', err);
+        });
+      }
     </script>
   </body>
 </html>
