@@ -12,6 +12,7 @@
       <br>
       <br>
       <p id="score">Score: 0</p>
+      <p id="range"></p>
       <br>
       <div id="promptBox"></div>
       <br>
@@ -32,7 +33,7 @@
       }
       #submit{
         background-image:linear-gradient(to bottom right, #79eefe,#293bc6);
-        font-size:14px;
+        font-size:18px;
         border:2px solid black;
       }
     </style>
@@ -90,14 +91,27 @@
         var a = Math.floor(Math.random()*51);
         var b = Math.floor(Math.random()*51);
         var rnd = Math.floor(Math.random()*4);
+        gebi("prompt").innerHTML="Generate random numbers starting from "+(b)+" to "+(a+1);
         showPrompt(rnd);
       }
+      advancePrompt();
+      var tries = 0;
       gebi("submit").addEventListener("click",function(){
         if (gebi("inputOne")===a && gebi("inputTwo")===b){
           //nice job
           score++;
           gebi("score").innerHTML=gebi("score").innerHTML.substring(0,8)+score;
           advancePrompt();
+          tries=0;
+        }else{
+          if (tries>2){
+            //done
+            alert("answer: "+b+" and "+a);
+            score=0;
+            advancePrompt();
+          }else{
+            alert("try again; make sure you don't have any weird characters in your answer");
+          }
         }
       })
     </script>
