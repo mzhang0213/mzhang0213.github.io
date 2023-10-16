@@ -142,14 +142,24 @@
           advancePrompt();
           resetLife();
         }else{
-          decreaseLife(3-tries);
-          if (tries>2){
-            //done
-            alert("answer: "+nums+" and "+start);
-            score=0;
-            advancePrompt();
-            resetLife();
-          }
+          setTimeout(function () { gebi("heart"+3-tries).style.display="none"
+          setTimeout(function () { gebi("heart"+3-tries).style.display=""
+          setTimeout(function () { gebi("heart"+3-tries).style.display="none"
+          setTimeout(function () { gebi("heart"+3-tries).style.display=""
+          setTimeout(function () { gebi("heart"+3-tries).style.display="none"
+          setTimeout(function () { gebi("heart"+3-tries).style.display=""
+          setTimeout(function () { gebi("heart"+3-tries).style.display="none"
+          setTimeout(function () { gebi("heart"+3-tries).style.display=""
+          setTimeout(function () { gebi("heart"+3-tries).style.display="none";
+            tries++;
+            if (tries===3){
+              //done
+              alert("answer: "+nums+" and "+start);
+              score=0;
+              advancePrompt();
+              resetLife();
+            }
+          }, 55)}, 182)}, 55)}, 55)}, 55)}, 55)}, 55)}, 55)}, 55)
         }
       })
     </script>
