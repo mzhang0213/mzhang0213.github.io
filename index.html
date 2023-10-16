@@ -99,7 +99,7 @@
       advancePrompt();
       var tries = 0;
       gebi("submit").addEventListener("click",function(){
-        if (gebi("inputOne")===start+nums && gebi("inputTwo")===start){
+        if (gebi("inputOne")===nums && gebi("inputTwo")===start){
           //nice job
           score++;
           gebi("score").innerHTML=gebi("score").innerHTML.substring(0,8)+score;
@@ -114,6 +114,7 @@
           }else{
             alert("try again; make sure you don't have any weird characters in your answer");
           }
+          tries++;
         }
       })
     </script>
