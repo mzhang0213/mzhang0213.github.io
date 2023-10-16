@@ -39,7 +39,6 @@
     </style>
     <script>
       const gebi = function(e){return document.getElementById(e)};
-      gebi("submit").disabled=true;
       //either: Math.floor(Math.random()*__)+__  Math.floor(Math.random()*__+__) OR (int) at beginning
       var showPrompt = function(prompt){
         var msgOne = document.createElement("p");
@@ -91,7 +90,7 @@
         var a = Math.floor(Math.random()*51);
         var b = Math.floor(Math.random()*51);
         var rnd = Math.floor(Math.random()*4);
-        gebi("prompt").innerHTML="Generate random numbers starting from "+(b)+" to "+(a+1);
+        gebi("range").innerHTML="Generate random numbers starting from "+(b)+" to "+(a+1);
         showPrompt(rnd);
       }
       advancePrompt();
