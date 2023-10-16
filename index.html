@@ -7,10 +7,97 @@
   <body>
     <font style="font-family: 'Cabin';">
     	<h1>Fun with Math.random()!</h1>
+      <br>
+      <br>
+      <br>
+      <p id="score">Score: 0</p>
+      <br>
+      <div id="promptBox"></div>
+      <br>
+      <button id="submit">Go!</button>
     </font>
-    <script src="http://code.jquery.com/jquery-2.1.0.js"></script>
+    <style>
+      #promptBox{
+        display:flex;
+        height:fit-content;
+        width:fit-content;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+      #score{
+        position:relative;
+        font-size:20px;
+      }
+      #submit{
+        background-image:linear-gradient(to bottom right, #79eefe,#293bc6);
+        font-size:14px;
+        border:2px solid black;
+      }
+    </style>
     <script>
-      //either: Math.floor(Math.random()*
+      const gebi = function(e){return document.getElementById(e)};
+      gebi("submit").disabled=true;
+      //either: Math.floor(Math.random()*__)+__  Math.floor(Math.random()*__+__) OR (int) at beginning
+      var showPrompt = function(prompt){
+        var msgOne = document.createElement("p");
+        var msgTwo = document.createElement("p");
+        var msgThree = document.createElement("p");
+        var inputOne = document.createElement("input");
+        var inputTwo = document.createElement("input");
+        inputOne.type="text";
+        inputTwo.type="text";
+        inputOne.style.fontSize="20px";
+        inputTwo.style.fontSize="20px";
+        inputOne.style.width="30px";
+        inputTwo.style.width="30px";
+        inputOne.style.height="30px";
+        inputTwo.style.height="30px";
+        inputOne.style.border="2px solid black";
+        inputTwo.style.border="2px solid black";
+        inputOne.id="inputOne";
+        inputTwo.id="inputTwo";
+        if(prompt===0){
+          msgOne.innerHTML="Math.floor(Math.random()* ";
+          msgTwo.innerHTML=" ) + ";
+          msgThree.innerHTML=";";
+        }else if(prompt===1){
+          msgOne.innerHTML="Math.floor(Math.random()* ";
+          msgTwo.innerHTML=" + ";
+          msgThree.innerHTML=" );";
+        }else if(prompt===2){
+          msgOne.innerHTML="(int)(Math.random()* ";
+          msgTwo.innerHTML=" ) + ";
+          msgThree.innerHTML=";";
+        }else{
+          msgOne.innerHTML="(int)(Math.random()* ";
+          msgTwo.innerHTML=" + ";
+          msgThree.innerHTML=" );";
+        }
+        gebi("promptBox").appendChild(msgOne);
+        gebi("promptBox").appendChild(inputOne);
+        gebi("promptBox").appendChild(msgTwo);
+        gebi("promptBox").appendChild(inputTwo);
+        gebi("promptBox").appendChild(msgThree);
+      }
+      var a = 0;
+      var b = 0;
+      var score = 0;
+      var advancePrompt = function(){
+        gebi("promptBox").innerHTML="";
+        //a and b represent the answers to the first and second prompt box that the user needs to type in; ie the upper and lower limit
+        var a = Math.floor(Math.random()*51);
+        var b = Math.floor(Math.random()*51);
+        var rnd = Math.floor(Math.random()*4);
+        showPrompt(rnd);
+      }
+      gebi("submit").addEventListener("click",function(){
+        if (gebi("inputOne")===a && gebi("inputTwo")===b){
+          //nice job
+          score++;
+          gebi("score").innerHTML=gebi("score").innerHTML.substring(0,8)+score;
+          advancePrompt();
+        }
+      })
     </script>
   </body>
 </html>
