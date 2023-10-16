@@ -93,7 +93,7 @@
         start = Math.floor(Math.random()*51);
         nums = Math.floor(Math.random()*30)+2;
         var rnd = Math.floor(Math.random()*4);
-        gebi("range").innerHTML="Generate random numbers starting from "+(start)+" to "+(start+nums+1);
+        gebi("range").innerHTML="Generate random numbers starting from "+(start)+" to "+(start+nums-1);
         showPrompt(rnd);
       }
       advancePrompt();
