@@ -84,22 +84,22 @@
         gebi("promptBox").appendChild(inputTwo);
         gebi("promptBox").appendChild(msgThree);
       }
-      var a = 0;
-      var b = 0;
+      var start = 0;
+      var nums = 0;
       var score = 0;
       var advancePrompt = function(){
         gebi("promptBox").innerHTML="";
         //a and b represent the answers to the first and second prompt box that the user needs to type in; ie the upper and lower limit
-        a = Math.floor(Math.random()*51);
-        b = Math.floor(Math.random()*51)+a;
+        start = Math.floor(Math.random()*51);
+        nums = Math.floor(Math.random()*30)+2;
         var rnd = Math.floor(Math.random()*4);
-        gebi("range").innerHTML="Generate random numbers starting from "+(a)+" to "+(b+1);
+        gebi("range").innerHTML="Generate random numbers starting from "+(start)+" to "+(start+nums+1);
         showPrompt(rnd);
       }
       advancePrompt();
       var tries = 0;
       gebi("submit").addEventListener("click",function(){
-        if (gebi("inputOne")===b && gebi("inputTwo")===a){
+        if (gebi("inputOne")===start+nums && gebi("inputTwo")===start){
           //nice job
           score++;
           gebi("score").innerHTML=gebi("score").innerHTML.substring(0,8)+score;
@@ -108,7 +108,7 @@
         }else{
           if (tries>2){
             //done
-            alert("answer: "+a+" and "+b);
+            alert("answer: "+start+" and "+nums);
             score=0;
             advancePrompt();
           }else{
