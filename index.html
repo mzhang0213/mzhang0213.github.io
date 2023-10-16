@@ -18,6 +18,11 @@
       <br>
       <button id="submit">Go!</button>
       </center>
+      <div id="hearts">
+        <img id="heart1" src="heart.png">
+        <img id="heart2" src="heart.png">
+        <img id="heart3" src="heart.png">
+      </div>
     </font>
     <style>
       #promptBox{
@@ -25,7 +30,16 @@
         height:fit-content;
         width:fit-content;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content:space-between;
+      }
+      #promptBox{
+        position:absolute;
+        top:0;
+        left:0;
+        display:flex;
+        height:fit-content;
+        width:fit-content;
+        flex-direction: column;
       }
       #score{
         position:relative;
@@ -84,6 +98,24 @@
         gebi("promptBox").appendChild(inputTwo);
         gebi("promptBox").appendChild(msgThree);
       }
+      var tries = 0;
+      var decreaseLife = function(heart){
+        setTimeout(function () { gebi("heart"+heart).style.display="none"
+        setTimeout(function () { gebi("heart"+heart).style.display=""
+        setTimeout(function () { gebi("heart"+heart).style.display="none"
+        setTimeout(function () { gebi("heart"+heart).style.display=""
+        setTimeout(function () { gebi("heart"+heart).style.display="none"
+        setTimeout(function () { gebi("heart"+heart).style.display=""
+        setTimeout(function () { gebi("heart"+heart).style.display="none"
+        setTimeout(function () { gebi("heart"+heart).style.display=""
+        setTimeout(function () { gebi("heart"+heart).style.display="none" }, 55)}, 182)}, 55)}, 55)}, 55)}, 55)}, 55)}, 55)}, 55)
+      }
+      var resetLife = function(){
+        gebi("heart1").style.display="";
+        gebi("heart2").style.display="";
+        gebi("heart3").style.display="";
+        tries=0;
+      }
       var start = 0;
       var nums = 0;
       var score = 0;
@@ -97,20 +129,21 @@
         showPrompt(rnd);
       }
       advancePrompt();
-      var tries = 0;
       gebi("submit").addEventListener("click",function(){
-        if (gebi("inputOne")===nums && gebi("inputTwo")===start){
+        if (gebi("inputOne").value==nums && gebi("inputTwo").value==start){
           //nice job
+          alert("AMAZING JOB");
           score++;
-          gebi("score").innerHTML=gebi("score").innerHTML.substring(0,8)+score;
+          gebi("score").innerHTML=gebi("score").innerHTML.substring(0,7)+score;
           advancePrompt();
-          tries=0;
+          resetLife();
         }else{
           if (tries>2){
             //done
             alert("answer: "+nums+" and "+start);
             score=0;
             advancePrompt();
+            resetLife();
           }else{
             alert("try again; make sure you don't have any weird characters in your answer");
           }
