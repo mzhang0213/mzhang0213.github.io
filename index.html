@@ -90,13 +90,13 @@
         var a = Math.floor(Math.random()*51);
         var b = Math.floor(Math.random()*51)+a;
         var rnd = Math.floor(Math.random()*4);
-        gebi("range").innerHTML="Generate random numbers starting from "+(b)+" to "+(a+1);
+        gebi("range").innerHTML="Generate random numbers starting from "+(a)+" to "+(b+1);
         showPrompt(rnd);
       }
       advancePrompt();
       var tries = 0;
       gebi("submit").addEventListener("click",function(){
-        if (gebi("inputOne")===a && gebi("inputTwo")===b){
+        if (gebi("inputOne")===b && gebi("inputTwo")===a){
           //nice job
           score++;
           gebi("score").innerHTML=gebi("score").innerHTML.substring(0,8)+score;
@@ -105,7 +105,7 @@
         }else{
           if (tries>2){
             //done
-            alert("answer: "+b+" and "+a);
+            alert("answer: "+a+" and "+b);
             score=0;
             advancePrompt();
           }else{
