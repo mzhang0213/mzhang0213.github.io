@@ -37,8 +37,8 @@
       }
       #hearts{
         position:absolute;
-        top:0;
-        left:0;
+        top:5px;
+        left:5px;
         display:flex;
         height:fit-content;
         width:fit-content;
@@ -142,14 +142,13 @@
           advancePrompt();
           resetLife();
         }else{
+          decreaseLife(3-tries);
           if (tries>1){
             //done
             alert("answer: "+nums+" and "+start);
             score=0;
             advancePrompt();
             resetLife();
-          }else{
-            decreaseLife(3-tries);
           }
         }
       })
