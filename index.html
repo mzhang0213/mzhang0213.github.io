@@ -112,6 +112,7 @@
         setTimeout(function () { gebi("heart"+heart).style.display="none"
         setTimeout(function () { gebi("heart"+heart).style.display=""
         setTimeout(function () { gebi("heart"+heart).style.display="none" }, 55)}, 182)}, 55)}, 55)}, 55)}, 55)}, 55)}, 55)}, 55)
+        tries++;
       }
       var resetLife = function(){
         gebi("heart1").style.display="";
@@ -149,7 +150,6 @@
             advancePrompt();
             resetLife();
           }
-          tries++;
         }
       })
     </script>
