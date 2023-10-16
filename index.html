@@ -112,7 +112,6 @@
         setTimeout(function () { gebi("heart"+heart).style.display="none"
         setTimeout(function () { gebi("heart"+heart).style.display=""
         setTimeout(function () { gebi("heart"+heart).style.display="none" }, 55)}, 182)}, 55)}, 55)}, 55)}, 55)}, 55)}, 55)}, 55)
-        tries++;
       }
       var resetLife = function(){
         gebi("heart1").style.display="";
@@ -143,13 +142,14 @@
           resetLife();
         }else{
           decreaseLife(3-tries);
-          if (tries>1){
+          if (tries>2){
             //done
             alert("answer: "+nums+" and "+start);
             score=0;
             advancePrompt();
             resetLife();
           }
+          tries++;
         }
       })
     </script>
