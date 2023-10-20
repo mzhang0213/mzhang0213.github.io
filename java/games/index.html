@@ -33,18 +33,6 @@
         }
       }
       window.onresize=resize;
-      window.onload=function(){
-        if (window.innerWidth<700){
-          //small
-          document.getElementById("navItemContainer").style.display="none"
-          document.getElementById("menuToggle").addEventListener("click",function(){
-            if (navMenuShown) document.getElementById("navItemContainer").style.display="none"
-            else document.getElementById("navItemContainer").style.display="";
-            navMenuShown=!navMenuShown;
-          })
-        }
-        resize();
-      }
     </script>
     <style>
       html{
@@ -65,7 +53,7 @@
       </div>
       <div id="navItemContainer" class="w-full block flex-grow md:flex md:items-center md:justify-end md:w-auto text-sm">
         <button onclick="(function(){window.location=window.location.origin})()" class="block mt-4 md:inline-block md:mt-0 text-gray-200 hover:text-white mr-4"><b>Home</b></button>
-        <button onclick="(function(){window.location=window.location.origin+'/java/rng/'})()" class="block mt-4 md:inline-block md:mt-0 text-gray-200 hover:text-white mr-4"><b>RNG</b></button>
+        <button onclick="(function(){window.location=window.location.origin+'/java/games/'})()" class="block mt-4 md:inline-block md:mt-0 text-gray-200 hover:text-white mr-4"><b>Games</b></button>
         <!--
         <div id="user" class="block mt-4 md:inline-block md:mt-0 text-gray-200 text-bold hover:text-white ml-2 mr-4">
           <button id="userButton"></button>
@@ -78,27 +66,42 @@
     </nav>
     <div class="absolute left-0 top-0 -z-10 bg-cover bg-fixed bg-repeat-y" style="width:100%;height:500vh;background-image:url('./kimi-bg.png')"></div>
     <font style="font-family: 'Cabin';">
+    <div id="tabs" class="absolute -z-10 flex flex-row w-9/12 h-fit">
+      <div id="rngTab" class="rounded-xl">RNG</div>
+    </div>
     <center>
-      <div class="relative flex flex-col w-9/12 mt-24 rounded-xl justify-center items-center bg-gray-100" style="height:80vh;">
-        <h1>Fun with Math.random()!</h1>
-        <br>
-        <br>
-        <br>
-        <p id="score">Score: 0</p>
-        <p id="range"></p>
-        <br>
-        <div id="promptBox"></div>
-        <br>
-        <button id="submit">Go!</button>
-        <div id="hearts">
-          <img id="heart1" src="heart.png">
-          <img id="heart2" src="heart.png">
-          <img id="heart3" src="heart.png">
+      <div id="contentBox" class="relative flex flex-col w-9/12 mt-24 rounded-xl justify-center items-center bg-gray-100" style="height:80vh;">
+        <div id="rng">
+          <h1>Fun with Math.random()!</h1>
+          <br>
+          <br>
+          <br>
+          <p id="score">Score: 0</p>
+          <p id="range"></p>
+          <br>
+          <div id="promptBox"></div>
+          <br>
+          <button id="submit">Go!</button>
+          <div id="hearts">
+            <img id="heart1" src="heart.png">
+            <img id="heart2" src="heart.png">
+            <img id="heart3" src="heart.png">
+          </div>
         </div>
       </div>
     </center>
     </font>
     <style>
+      #tabs div{
+        height:40px;
+        padding-left:7px;
+        padding-right:7px;
+        padding-top:3px;
+        padding-bottom:3px;
+        background-color:rgb(243 244 246); /*gray-100*/
+        user-select:none;
+        margin-right:7px;
+      }
       #hearts img{
         width:20px;
       }
@@ -133,6 +136,41 @@
     </style>
     <script>
       //either: Math.floor(Math.random()*__)+__  Math.floor(Math.random()*__+__) OR (int) at beginning
+      var games = ["rng"];
+      var hideAllGames = function(){
+        for (var i of games){
+          gebi(i).style.display="none";
+        }
+      }
+      var highlightTab = function(tab){
+        for (var i of games){
+          gebi(i+"Tab").style.backgroundColor="rgb(243 244 246)";
+        }
+        gebi(tab).style.backgroundColor="rgb(199, 200, 201)";
+      }
+      window.onload=function(){
+        if (window.innerWidth<700){
+          //small
+          document.getElementById("navItemContainer").style.display="none"
+          document.getElementById("menuToggle").addEventListener("click",function(){
+            if (navMenuShown) document.getElementById("navItemContainer").style.display="none"
+            else document.getElementById("navItemContainer").style.display="";
+            navMenuShown=!navMenuShown;
+          })
+        }
+        resize();
+        gebi("tabs").style.left=gebi("contentBox").offsetLeft+"px";
+        gebi("tabs").style.top=(gebi("contentBox").offsetTop-25)+"px";
+        highlightTab("rngTab");
+        for (var i of games){
+          gebi(i+"Tab").addEventListener("click",function(event){
+            var eId = event.srcElement.id.substring(0,event.srcElement.id.length-3);
+            highlightTab(eId+"Tab");
+            hideAllGames();
+            gebi(eId).style.display="";
+          })
+        }
+      }
       var showPrompt = function(prompt){
         var msgOne = document.createElement("p");
         var msgTwo = document.createElement("p");
