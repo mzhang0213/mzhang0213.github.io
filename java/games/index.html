@@ -272,7 +272,7 @@
       var advanceLevel = function(){
         hideLevelSquares();gebi("square5").style.display="";
         //do level display ++
-        gebi("score").innerHTML=gebi("score").innerHTML.substring(0,7)+++level;
+        gebi("levelDisplay").innerHTML=gebi("levelDisplay").innerHTML.substring(0,7)+(++level);
       }
 
       //check to see if they have played before
