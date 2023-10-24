@@ -76,7 +76,6 @@
           <br>
           <br>
           <br>
-          <p id="score">Score: 0</p>
           <p id="range"></p>
           <br>
           <div id="promptBox"></div>
@@ -87,11 +86,31 @@
             <img id="heart2" src="heart.png">
             <img id="heart3" src="heart.png">
           </div>
+          <div id="level" class="absolute top-4 right-0 flex flex-row justify-start" style="width:135px;">
+            <div id="square5"></div>
+            <div id="square4"></div>
+            <div id="square3"></div>
+            <div id="square2"></div>
+            <div id="square1"></div>
+          </div>
+          <div id="level" class="absolute top-12 right-0 flex flex-row justify-start" style="width:135px;">
+            <p id="levelDisplay" class="absolute ">Level: 1</p>
+          </div>
         </div>
       </div>
     </center>
     </font>
     <style>
+      #level div{
+        width:20px;
+        height:20px;
+        margin-right:7px;
+      }
+      #square1{background-color:rgb(53, 212, 53);}
+      #square2{background-color:rgb(19, 189, 19);}
+      #square3{background-color:rgb(6, 136, 6);}
+      #square4{background-color:rgb(13, 121, 13);}
+      #square5{background-color:rgb(3, 87, 3);}
       #tabs div{
         height:40px;
         padding-left:7px;
@@ -172,11 +191,7 @@
         }
       }
       var showPrompt = function(prompt){
-        var msgOne = document.createElement("p");
-        var msgTwo = document.createElement("p");
-        var msgThree = document.createElement("p");
-        var inputOne = document.createElement("input");
-        var inputTwo = document.createElement("input");
+        var msgOne = document.createElement("p");var msgTwo = document.createElement("p");var msgThree = document.createElement("p");var inputOne = document.createElement("input");var inputTwo = document.createElement("input");
         inputOne.type="text";
         inputTwo.type="text";
         inputOne.style.fontSize="20px";
@@ -214,15 +229,7 @@
       }
       var tries = 0;
       var decreaseLife = function(heart){
-        setTimeout(function () { gebi("heart"+heart).style.display="none"
-        setTimeout(function () { gebi("heart"+heart).style.display=""
-        setTimeout(function () { gebi("heart"+heart).style.display="none"
-        setTimeout(function () { gebi("heart"+heart).style.display=""
-        setTimeout(function () { gebi("heart"+heart).style.display="none"
-        setTimeout(function () { gebi("heart"+heart).style.display=""
-        setTimeout(function () { gebi("heart"+heart).style.display="none"
-        setTimeout(function () { gebi("heart"+heart).style.display=""
-        setTimeout(function () { gebi("heart"+heart).style.display="none" }, 55)}, 182)}, 55)}, 55)}, 55)}, 55)}, 55)}, 55)}, 55)
+        setTimeout(function () { gebi("heart"+heart).style.display="none";setTimeout(function () { gebi("heart"+heart).style.display="";setTimeout(function () { gebi("heart"+heart).style.display="none";setTimeout(function () { gebi("heart"+heart).style.display="";setTimeout(function () { gebi("heart"+heart).style.display="none";setTimeout(function () { gebi("heart"+heart).style.display="";setTimeout(function () { gebi("heart"+heart).style.display="none";setTimeout(function () { gebi("heart"+heart).style.display="";setTimeout(function () { gebi("heart"+heart).style.display="none" }, 55)}, 182)}, 55)}, 55)}, 55)}, 55)}, 55)}, 55)}, 55)
         tries++;
       }
       var resetLife = function(){
@@ -234,6 +241,7 @@
       var start = 0;
       var nums = 0;
       var score = 0;
+      var level = 1;
       var advancePrompt = function(){
         gebi("promptBox").innerHTML="";
         //a and b represent the answers to the first and second prompt box that the user needs to type in; ie the upper and lower limit
@@ -244,12 +252,47 @@
         showPrompt(rnd);
       }
       advancePrompt();
+      
+      var hideLevelSquares = function(){
+        for (var i of gebi("level").children){
+          i.style.display="none";
+        }
+      }
+      hideLevelSquares();
+      gebi("square5").style.display="";
+      var advanceScore = function(){
+        switch(score%5){
+          case 1:gebi("square4").style.display="";break;
+          case 2:gebi("square3").style.display="";break;
+          case 3:gebi("square2").style.display="";break;
+          case 4:gebi("square1").style.display="";break;
+          case 0:advanceLevel();break;
+        }
+      }
+      var advanceLevel = function(){
+        hideLevelSquares();gebi("square5").style.display="";
+        //do level display ++
+        gebi("score").innerHTML=gebi("score").innerHTML.substring(0,7)+++level;
+      }
+
+      //check to see if they have played before
+      if (localStorage.getItem("mz-rng-score")!==null){
+        //update meters - level, blocks
+        score = parseInt(localStorage.getItem("mz-rng-score"));
+        advanceScore();
+        level = parseInt(score/5)-1; //advance level ++ inside
+        advanceLevel();
+      }
+
+      
+      
       gebi("submit").addEventListener("click",function(){
         if (gebi("inputOne").value==nums && gebi("inputTwo").value==start){
           //nice job
           alert("AMAZING JOB");
           score++;
-          gebi("score").innerHTML=gebi("score").innerHTML.substring(0,7)+score;
+          localStorage.setItem("mz-rng-score",score); //update localstorage
+          advanceScore();
           advancePrompt();
           resetLife();
         }else{
