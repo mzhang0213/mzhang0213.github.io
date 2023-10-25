@@ -1,0 +1,10 @@
+✅ create tabbed ui
+
+rng game
+lv1
+what range of random numbers are produced from following? 0||1 >> #<10
+generate random from 0||1 >> #<10
+
+lv2 <what i have currently>
+what range of random numbers are produced from following? 0||1 >> #<10
+generate random from 0||1 >> #<10
