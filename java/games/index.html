@@ -191,41 +191,30 @@
         }
       }
       var showPrompt = function(prompt){
-        var msgOne = document.createElement("p");var msgTwo = document.createElement("p");var msgThree = document.createElement("p");var inputOne = document.createElement("input");var inputTwo = document.createElement("input");
-        inputOne.type="text";
-        inputTwo.type="text";
-        inputOne.style.fontSize="20px";
-        inputTwo.style.fontSize="20px";
-        inputOne.style.width="30px";
-        inputTwo.style.width="30px";
-        inputOne.style.height="30px";
-        inputTwo.style.height="30px";
-        inputOne.style.border="2px solid black";
-        inputTwo.style.border="2px solid black";
-        inputOne.id="inputOne";
-        inputTwo.id="inputTwo";
-        if(prompt===0){
-          msgOne.innerHTML="Math.floor(Math.random()* ";
-          msgTwo.innerHTML=" ) + ";
-          msgThree.innerHTML=";";
-        }else if(prompt===1){
-          msgOne.innerHTML="Math.floor(Math.random()* ";
-          msgTwo.innerHTML=" + ";
-          msgThree.innerHTML=" );";
-        }else if(prompt===2){
-          msgOne.innerHTML="(int)(Math.random()* ";
-          msgTwo.innerHTML=" ) + ";
-          msgThree.innerHTML=";";
-        }else{
-          msgOne.innerHTML="(int)(Math.random()* ";
-          msgTwo.innerHTML=" + ";
-          msgThree.innerHTML=" );";
-        }
-        gebi("promptBox").appendChild(msgOne);
-        gebi("promptBox").appendChild(inputOne);
-        gebi("promptBox").appendChild(msgTwo);
-        gebi("promptBox").appendChild(inputTwo);
-        gebi("promptBox").appendChild(msgThree);
+        if (type===0){
+          gebi("range").innerHTML="Generate random numbers starting from "+(start)+" to "+(start+nums-1);
+          var msgOne = document.createElement("p");var msgTwo = document.createElement("p");var msgThree = document.createElement("p");var inputOne = document.createElement("input");var inputTwo = document.createElement("input");
+          inputOne.type="text";inputOne.style.fontSize="20px";inputOne.style.width="30px";inputOne.style.height="30px";inputOne.id="inputOne";
+          inputTwo.type="text";inputTwo.style.fontSize="20px";inputTwo.style.width="30px";inputTwo.style.height="30px";inputTwo.style.border="2px solid black";inputTwo.id="inputTwo";
+          if(prompt===0){
+            msgOne.innerHTML="Math.floor(Math.random()* ";msgTwo.innerHTML=" ) + ";msgThree.innerHTML=";";
+          }else if(prompt===1){
+            msgOne.innerHTML="Math.floor(Math.random()* ";msgTwo.innerHTML=" + ";msgThree.innerHTML=" );";
+          }else if(prompt===2){
+            msgOne.innerHTML="(int)(Math.random()* ";msgTwo.innerHTML=" ) + ";msgThree.innerHTML=";";
+          }else{
+            msgOne.innerHTML="(int)(Math.random()* ";msgTwo.innerHTML=" + ";msgThree.innerHTML=" );";
+          }
+          gebi("promptBox").appendChild(msgOne);
+          gebi("promptBox").appendChild(inputOne);
+          gebi("promptBox").appendChild(msgTwo);
+          gebi("promptBox").appendChild(inputTwo);
+          gebi("promptBox").appendChild(msgThree);
+        }else if (type===1){
+          gebi("range").innerHTML="Write how you would generate random numbers from "+(start)+" to "+(start+nums-1);
+          var inputOne = document.createElement("input");
+          inputOne.type="text";inputOne.style.fontSize="20px";inputOne.style.width="50px";inputOne.style.height="30px";inputOne.id="inputOne";
+        }else alert("please ask michael for help oh noesss :(")
       }
       var tries = 0;
       var decreaseLife = function(heart){
@@ -242,14 +231,21 @@
       var nums = 0;
       var score = 0;
       var level = 1;
+      var type = 0;
       var advancePrompt = function(){
         gebi("promptBox").innerHTML="";
         //a and b represent the answers to the first and second prompt box that the user needs to type in; ie the upper and lower limit
-        start = Math.floor(Math.random()*51);
-        nums = Math.floor(Math.random()*30)+2;
-        var rnd = Math.floor(Math.random()*4);
-        gebi("range").innerHTML="Generate random numbers starting from "+(start)+" to "+(start+nums-1);
-        showPrompt(rnd);
+        if (level===1){
+          start = 0;
+          nums = Math.floor(Math.random()*13);
+          type = Math.floor(Math.random()*2);
+          showPrompt(Math.floor(Math.random()*4),type);
+        }else if (level===2){
+          start = Math.floor(Math.random()*51);
+          nums = Math.floor(Math.random()*30)+2;
+          type = Math.floor(Math.random()*2);
+          showPrompt(Math.floor(Math.random()*4),type);
+        }
       }
       advancePrompt();
       
