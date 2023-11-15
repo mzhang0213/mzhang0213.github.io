@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link href='https://fonts.googleapis.com/css?family=Cabin' rel='stylesheet'>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="./logo.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather' rel='stylesheet'>
+    <script>
+      tailwind.config = {
+        theme: {
+          screens: {
+            sm: '0px',
+            md: '700px',
+            lg: '1200px',
+            xl: '1600px'
+          }
+        }
+      }
+    </script>
+    <script>
+      var navMenuShown = false;
+      var gebi = function(e){return document.getElementById(e)};
+      var resize = function(){
+        if (window.innerWidth<700){
+          //small
+        }else if (700<=window.innerWidth && window.innerWidth<1200){
+          //med
+        }else{
+          //lg++
+        }
+      }
+      window.onresize=resize;
+    </script>
+    <style>
+      html{
+        scroll-behavior:smooth;
+      }
+    </style>
+  </head>
+  <body onscroll="(function(){if(window.scrollY>10)document.getElementById('navbar').style.backgroundColor='rgba(0,0,0,1)'; else if (window.scrollY<10)document.getElementById('navbar').style.backgroundColor='rgba(0,0,0,0.5)'})()">
+    <!--navbar-->
+    <nav id="navbar" class="left-0 top-0 z-50 flex items-center justify-between flex-wrap p-2 w-screen fixed pr-4" style="font-family: 'Merriweather';transition: background-color 200ms linear; background-color:rgba(0,0,0,0.5)">
+      <div class="flex items-center flex-shrink-0 text-white mr-6" onclick="(function(){window.location=window.location.origin})()">
+        <button class="text-xl tracking-tight">Javaaaa ♨♨♨</span>
+      </div>
+      <div class="block md:hidden">
+        <button id="menuToggle" class="flex items-center px-3 py-2 border rounded text-gray-300 border-gray-300 hover:text-white hover:border-white">
+          <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+        </button>
+      </div>
+      <div id="navItemContainer" class="w-full block flex-grow md:flex md:items-center md:justify-end md:w-auto text-sm">
+        <button onclick="(function(){window.location=window.location.origin})()" class="block mt-4 md:inline-block md:mt-0 text-gray-200 hover:text-white mr-4"><b>Home</b></button>
+        <button onclick="(function(){window.location=window.location.origin+'/java/games/'})()" class="block mt-4 md:inline-block md:mt-0 text-gray-200 hover:text-white mr-4"><b>Games</b></button>
+        <!--
+        <div id="user" class="block mt-4 md:inline-block md:mt-0 text-gray-200 text-bold hover:text-white ml-2 mr-4">
+          <button id="userButton"></button>
+          <div id="userContent">
+            <a id="group"></a>
+            <a onclick="(function(){localStorage.removeItem('hh-username');localStorage.removeItem('hh-first');localStorage.removeItem('hh-last');localStorage.removeItem('group');unregisterGroup();window.location.reload();})()" id="logout">Logout</a>
+          </div>
+        </div>
+      </div>-->
+    </nav>
+    <div class="absolute left-0 top-0 -z-10 bg-cover bg-fixed bg-repeat-y" style="width:100%;height:500vh;background-image:url('./kimi-bg.png')"></div>
+    <font style="font-family: 'Cabin';">
+    <div id="tabs" class="absolute -z-10 flex flex-row w-9/12 h-fit">
+      <div id="rngTab" class="rounded-xl">RNG</div>
+    </div>
+    <center>
+      <div id="contentBox" class="relative flex flex-col w-9/12 mt-24 rounded-xl justify-center items-center bg-gray-100" style="height:80vh;">
+        <div id="rng">
+          <h1>Fun with Math.random()!</h1>
+          <br>
+          <br>
+          <br>
+          <p id="range"></p>
+          <br>
+          <div id="promptBox"></div>
+          <br>
+          <button id="submit">Go!</button>
+          <div id="hearts">
+            <img id="heart1" src="heart.png">
+            <img id="heart2" src="heart.png">
+            <img id="heart3" src="heart.png">
+          </div>
+          <div id="level" class="absolute top-4 right-0 flex flex-row justify-start" style="width:135px;">
+            <div id="square5"></div>
+            <div id="square4"></div>
+            <div id="square3"></div>
+            <div id="square2"></div>
+            <div id="square1"></div>
+          </div>
+          <div id="level" class="absolute top-12 right-0 flex flex-row justify-start" style="width:135px;">
+            <p id="levelDisplay" class="absolute ">Level: 1</p>
+          </div>
+        </div>
+      </div>
+    </center>
+    </font>
+    <style>
+      #level div{
+        width:20px;
+        height:20px;
+        margin-right:7px;
+      }
+      #square1{background-color:rgb(53, 212, 53);}
+      #square2{background-color:rgb(19, 189, 19);}
+      #square3{background-color:rgb(6, 136, 6);}
+      #square4{background-color:rgb(13, 121, 13);}
+      #square5{background-color:rgb(3, 87, 3);}
+      #tabs div{
+        height:40px;
+        padding-left:7px;
+        padding-right:7px;
+        padding-top:3px;
+        padding-bottom:3px;
+        background-color:rgb(243 244 246); /*gray-100*/
+        user-select:none;
+        margin-right:7px;
+      }
+      #hearts img{
+        width:20px;
+      }
+      #promptBox{
+        display:flex;
+        height:fit-content;
+        width:fit-content;
+        flex-direction: row;
+        justify-content:space-between;
+      }
+      #hearts{
+        position:absolute;
+        top:5px;
+        left:5px;
+        display:flex;
+        height:fit-content;
+        width:fit-content;
+        flex-direction: column;
+      }
+      #score{
+        position:relative;
+        font-size:20px;
+      }
+      #submit{
+        background-image:linear-gradient(to bottom right, #79eefe,#293bc6);
+        font-size:18px;
+        border:2px solid black;
+      }
+      #submit:hover{
+        background-image:linear-gradient(to bottom right, #54c3d1,#12208f);
+      }
+    </style>
+    <script>
+      //either: Math.floor(Math.random()*__)+__  Math.floor(Math.random()*__+__) OR (int) at beginning
+      var games = ["rng"];
+      var hideAllGames = function(){
+        for (var i of games){
+          gebi(i).style.display="none";
+        }
+      }
+      var highlightTab = function(tab){
+        for (var i of games){
+          gebi(i+"Tab").style.backgroundColor="rgb(243 244 246)";
+        }
+        gebi(tab).style.backgroundColor="rgb(199, 200, 201)";
+      }
+      window.onload=function(){
+        if (window.innerWidth<700){
+          //small
+          document.getElementById("navItemContainer").style.display="none"
+          document.getElementById("menuToggle").addEventListener("click",function(){
+            if (navMenuShown) document.getElementById("navItemContainer").style.display="none"
+            else document.getElementById("navItemContainer").style.display="";
+            navMenuShown=!navMenuShown;
+          })
+        }
+        resize();
+        gebi("tabs").style.left=gebi("contentBox").offsetLeft+"px";
+        gebi("tabs").style.top=(gebi("contentBox").offsetTop-25)+"px";
+        highlightTab("rngTab");
+        for (var i of games){
+          gebi(i+"Tab").addEventListener("click",function(event){
+            var eId = event.srcElement.id.substring(0,event.srcElement.id.length-3);
+            highlightTab(eId+"Tab");
+            hideAllGames();
+            gebi(eId).style.display="";
+          })
+        }
+      }
+      var showPrompt = function(prompt){
+        if (type===0){
+          gebi("range").innerHTML="Generate random numbers starting from "+(start)+" to "+(start+nums-1);
+          var msgOne = document.createElement("p");var msgTwo = document.createElement("p");var msgThree = document.createElement("p");var inputOne = document.createElement("input");var inputTwo = document.createElement("input");
+          inputOne.type="text";inputOne.style.fontSize="20px";inputOne.style.width="30px";inputOne.style.height="30px";inputOne.id="inputOne";
+          inputTwo.type="text";inputTwo.style.fontSize="20px";inputTwo.style.width="30px";inputTwo.style.height="30px";inputTwo.style.border="2px solid black";inputTwo.id="inputTwo";
+          if(prompt===0){
+            msgOne.innerHTML="Math.floor(Math.random()* ";msgTwo.innerHTML=" ) + ";msgThree.innerHTML=";";
+          }else if(prompt===1){
+            msgOne.innerHTML="Math.floor(Math.random()* ";msgTwo.innerHTML=" + ";msgThree.innerHTML=" );";
+          }else if(prompt===2){
+            msgOne.innerHTML="(int)(Math.random()* ";msgTwo.innerHTML=" ) + ";msgThree.innerHTML=";";
+          }else{
+            msgOne.innerHTML="(int)(Math.random()* ";msgTwo.innerHTML=" + ";msgThree.innerHTML=" );";
+          }
+          gebi("promptBox").appendChild(msgOne);
+          gebi("promptBox").appendChild(inputOne);
+          gebi("promptBox").appendChild(msgTwo);
+          gebi("promptBox").appendChild(inputTwo);
+          gebi("promptBox").appendChild(msgThree);
+        }else if (type===1){
+          gebi("range").innerHTML="Write how you would generate random numbers from "+(start)+" to "+(start+nums-1);
+          var inputOne = document.createElement("input");
+          inputOne.type="text";inputOne.style.fontSize="20px";inputOne.style.width="50px";inputOne.style.height="30px";inputOne.id="inputOne";
+        }else alert("please ask michael for help oh noesss :(")
+      }
+      var tries = 0;
+      var decreaseLife = function(heart){
+        setTimeout(function () { gebi("heart"+heart).style.display="none";setTimeout(function () { gebi("heart"+heart).style.display="";setTimeout(function () { gebi("heart"+heart).style.display="none";setTimeout(function () { gebi("heart"+heart).style.display="";setTimeout(function () { gebi("heart"+heart).style.display="none";setTimeout(function () { gebi("heart"+heart).style.display="";setTimeout(function () { gebi("heart"+heart).style.display="none";setTimeout(function () { gebi("heart"+heart).style.display="";setTimeout(function () { gebi("heart"+heart).style.display="none" }, 55)}, 182)}, 55)}, 55)}, 55)}, 55)}, 55)}, 55)}, 55)
+        tries++;
+      }
+      var resetLife = function(){
+        gebi("heart1").style.display="";
+        gebi("heart2").style.display="";
+        gebi("heart3").style.display="";
+        tries=0;
+      }
+      var start = 0;
+      var nums = 0;
+      var score = 0;
+      var level = 1;
+      var type = 0;
+      var advancePrompt = function(){
+        gebi("promptBox").innerHTML="";
+        //a and b represent the answers to the first and second prompt box that the user needs to type in; ie the upper and lower limit
+        if (level===1){
+          start = 0;
+          nums = Math.floor(Math.random()*13);
+          type = Math.floor(Math.random()*2);
+          showPrompt(Math.floor(Math.random()*4),type);
+        }else if (level===2){
+          start = Math.floor(Math.random()*51);
+          nums = Math.floor(Math.random()*30)+2;
+          type = Math.floor(Math.random()*2);
+          showPrompt(Math.floor(Math.random()*4),type);
+        }
+      }
+      advancePrompt();
+      
+      var hideLevelSquares = function(){
+        for (var i of gebi("level").children){
+          i.style.display="none";
+        }
+      }
+      hideLevelSquares();
+      gebi("square5").style.display="";
+      var advanceScore = function(){
+        switch(score%5){
+          case 1:gebi("square4").style.display="";break;
+          case 2:gebi("square3").style.display="";break;
+          case 3:gebi("square2").style.display="";break;
+          case 4:gebi("square1").style.display="";break;
+          case 0:advanceLevel();break;
+        }
+      }
+      var advanceLevel = function(){
+        hideLevelSquares();gebi("square5").style.display="";
+        //do level display ++
+        gebi("levelDisplay").innerHTML=gebi("levelDisplay").innerHTML.substring(0,7)+(++level);
+      }
+
+      //check to see if they have played before
+      if (localStorage.getItem("mz-rng-score")!==null){
+        //update meters - level, blocks
+        score = parseInt(localStorage.getItem("mz-rng-score"));
+        advanceScore();
+        level = parseInt(score/5);
+        advanceLevel();
+      }
+
+      
+      
+      gebi("submit").addEventListener("click",function(){
+        if (gebi("inputOne").value==nums && gebi("inputTwo").value==start){
+          //nice job
+          alert("AMAZING JOB");
+          score++;
+          localStorage.setItem("mz-rng-score",score); //update localstorage
+          advanceScore();
+          advancePrompt();
+          resetLife();
+        }else{
+          setTimeout(function () { gebi("heart"+(3-tries)).style.display="none"
+          setTimeout(function () { gebi("heart"+(3-tries)).style.display=""
+          setTimeout(function () { gebi("heart"+(3-tries)).style.display="none"
+          setTimeout(function () { gebi("heart"+(3-tries)).style.display=""
+          setTimeout(function () { gebi("heart"+(3-tries)).style.display="none"
+          setTimeout(function () { gebi("heart"+(3-tries)).style.display=""
+          setTimeout(function () { gebi("heart"+(3-tries)).style.display="none"
+          setTimeout(function () { gebi("heart"+(3-tries)).style.display=""
+          setTimeout(function () { gebi("heart"+(3-tries)).style.display="none";
+            tries++;
+            if (tries===3){
+              //done
+              alert("answer: "+nums+" and "+start);
+              score=0;
+              advancePrompt();
+              resetLife();
+            }
+          }, 55)}, 182)}, 55)}, 55)}, 55)}, 55)}, 55)}, 55)}, 55)
+        }
+      })
+    </script>
+  </body>
+</html>
