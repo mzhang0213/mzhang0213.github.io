@@ -66,36 +66,10 @@
     </nav>
     <div class="absolute left-0 top-0 -z-10 bg-cover bg-fixed bg-repeat-y" style="width:100%;height:500vh;background-image:url('./kimi-bg.png')"></div>
     <font style="font-family: 'Cabin';">
-    <div id="tabs" class="absolute -z-10 flex flex-row w-9/12 h-fit">
-      <div id="rngTab" class="rounded-xl">RNG</div>
-    </div>
     <center>
       <div id="contentBox" class="relative flex flex-col w-9/12 mt-24 rounded-xl justify-center items-center bg-gray-100" style="height:80vh;">
+        <div id="imgBox"></div>
         <div id="rng">
-          <h1>Fun with Math.random()!</h1>
-          <br>
-          <br>
-          <br>
-          <p id="range"></p>
-          <br>
-          <div id="promptBox"></div>
-          <br>
-          <button id="submit">Go!</button>
-          <div id="hearts">
-            <img id="heart1" src="heart.png">
-            <img id="heart2" src="heart.png">
-            <img id="heart3" src="heart.png">
-          </div>
-          <div id="level" class="absolute top-4 right-0 flex flex-row justify-start" style="width:135px;">
-            <div id="square5"></div>
-            <div id="square4"></div>
-            <div id="square3"></div>
-            <div id="square2"></div>
-            <div id="square1"></div>
-          </div>
-          <div id="level" class="absolute top-12 right-0 flex flex-row justify-start" style="width:135px;">
-            <p id="levelDisplay" class="absolute ">Level: 1</p>
-          </div>
         </div>
       </div>
     </center>
@@ -155,18 +129,6 @@
     </style>
     <script>
       //either: Math.floor(Math.random()*__)+__  Math.floor(Math.random()*__+__) OR (int) at beginning
-      var games = ["rng"];
-      var hideAllGames = function(){
-        for (var i of games){
-          gebi(i).style.display="none";
-        }
-      }
-      var highlightTab = function(tab){
-        for (var i of games){
-          gebi(i+"Tab").style.backgroundColor="rgb(243 244 246)";
-        }
-        gebi(tab).style.backgroundColor="rgb(199, 200, 201)";
-      }
       window.onload=function(){
         if (window.innerWidth<700){
           //small
@@ -178,54 +140,9 @@
           })
         }
         resize();
-        gebi("tabs").style.left=gebi("contentBox").offsetLeft+"px";
-        gebi("tabs").style.top=(gebi("contentBox").offsetTop-25)+"px";
-        highlightTab("rngTab");
-        for (var i of games){
-          gebi(i+"Tab").addEventListener("click",function(event){
-            var eId = event.srcElement.id.substring(0,event.srcElement.id.length-3);
-            highlightTab(eId+"Tab");
-            hideAllGames();
-            gebi(eId).style.display="";
-          })
-        }
       }
       var showPrompt = function(prompt){
-        if (type===0){
-          gebi("range").innerHTML="Generate random numbers starting from "+(start)+" to "+(start+nums-1);
-          var msgOne = document.createElement("p");var msgTwo = document.createElement("p");var msgThree = document.createElement("p");var inputOne = document.createElement("input");var inputTwo = document.createElement("input");
-          inputOne.type="text";inputOne.style.fontSize="20px";inputOne.style.width="30px";inputOne.style.height="30px";inputOne.id="inputOne";
-          inputTwo.type="text";inputTwo.style.fontSize="20px";inputTwo.style.width="30px";inputTwo.style.height="30px";inputTwo.style.border="2px solid black";inputTwo.id="inputTwo";
-          if(prompt===0){
-            msgOne.innerHTML="Math.floor(Math.random()* ";msgTwo.innerHTML=" ) + ";msgThree.innerHTML=";";
-          }else if(prompt===1){
-            msgOne.innerHTML="Math.floor(Math.random()* ";msgTwo.innerHTML=" + ";msgThree.innerHTML=" );";
-          }else if(prompt===2){
-            msgOne.innerHTML="(int)(Math.random()* ";msgTwo.innerHTML=" ) + ";msgThree.innerHTML=";";
-          }else{
-            msgOne.innerHTML="(int)(Math.random()* ";msgTwo.innerHTML=" + ";msgThree.innerHTML=" );";
-          }
-          gebi("promptBox").appendChild(msgOne);
-          gebi("promptBox").appendChild(inputOne);
-          gebi("promptBox").appendChild(msgTwo);
-          gebi("promptBox").appendChild(inputTwo);
-          gebi("promptBox").appendChild(msgThree);
-        }else if (type===1){
-          gebi("range").innerHTML="Write how you would generate random numbers from "+(start)+" to "+(start+nums-1);
-          var inputOne = document.createElement("input");
-          inputOne.type="text";inputOne.style.fontSize="20px";inputOne.style.width="50px";inputOne.style.height="30px";inputOne.id="inputOne";
-        }else alert("please ask michael for help oh noesss :(")
-      }
-      var tries = 0;
-      var decreaseLife = function(heart){
-        setTimeout(function () { gebi("heart"+heart).style.display="none";setTimeout(function () { gebi("heart"+heart).style.display="";setTimeout(function () { gebi("heart"+heart).style.display="none";setTimeout(function () { gebi("heart"+heart).style.display="";setTimeout(function () { gebi("heart"+heart).style.display="none";setTimeout(function () { gebi("heart"+heart).style.display="";setTimeout(function () { gebi("heart"+heart).style.display="none";setTimeout(function () { gebi("heart"+heart).style.display="";setTimeout(function () { gebi("heart"+heart).style.display="none" }, 55)}, 182)}, 55)}, 55)}, 55)}, 55)}, 55)}, 55)}, 55)
-        tries++;
-      }
-      var resetLife = function(){
-        gebi("heart1").style.display="";
-        gebi("heart2").style.display="";
-        gebi("heart3").style.display="";
-        tries=0;
+        
       }
       var start = 0;
       var nums = 0;
@@ -233,6 +150,39 @@
       var level = 1;
       var type = 0;
       var advancePrompt = function(){
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+//left off editing here
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         gebi("promptBox").innerHTML="";
         //a and b represent the answers to the first and second prompt box that the user needs to type in; ie the upper and lower limit
         if (level===1){
