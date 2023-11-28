@@ -1,0 +1,65 @@
+/*
+Unit 1: Primitive Types
+Unit 2: Using Objects
+Unit 3: Boolean Expressions and if Statements
+Unit 4: Iteration
+Unit 5: Writing Classes
+Unit 6: Array
+Unit 7: ArrayList
+Unit 8: 2D Array
+Unit 9: Inheritance
+Unit 10: Recursion
+*/
+
+{
+	"1":{
+		"1":[],
+		"2":[],
+		"3":[]
+	},
+	"2":{
+		"1":[{"test":1,"question":2},{"test":1,"question":4}],
+		"2":[],
+		"3":[]
+	},
+	"3":{
+		"1":[],
+		"2":[{"test":1,"question":10}], //q10 is not hard
+		"3":[]
+	},
+	"4":{
+		"1":[{"test":1,"question":3}],
+		"2":[{"test":1,"question":5},{"test":1,"question":11}],
+		"3":[{"test":1,"question":7}]
+	},
+	"5":{
+		"1":[],
+		"2":[{"test":1,"question":8}],
+		"3":[]
+	},
+	"6":{
+		"1":[{"test":1,"question":13},{"test":1,"question":14}],
+		"2":[{"test":1,"question":6}],
+		"3":[]
+	},
+	"7":{
+		"1":[{"test":1,"question":12}], //q12 is really omega ez if im not stupid
+		"2":[],
+		"3":[]
+	},
+	"8":{
+		"1":[],
+		"2":[],
+		"3":[]
+	},
+	"9":{
+		"1":[],
+		"2":[{"test":1,"question":1}],
+		"3":[]
+	},
+	"10":{
+		"1":[],
+		"2":[{"test":1,"question":9}], //q9 is not hard
+		"3":[]
+	}
+}

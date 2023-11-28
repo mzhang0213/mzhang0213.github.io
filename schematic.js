@@ -12,6 +12,15 @@ var tests = {
 	}
 }
 
+//question bank
+var questions = {
+	"unit":{
+		"level1":[
+			{"test":1,"question":15}
+		]
+	}
+}
+
 /* for practice pg
 
 Unit 1: Primitive Types
