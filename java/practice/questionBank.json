@@ -19,28 +19,28 @@ Unit 10: Recursion
 	},
 	"2":{
 		"1":[{"test":1,"question":2},{"test":1,"question":4}],
-		"2":[],
+		"2":[{"test":1,"question":24}],
 		"3":[]
 	},
 	"3":{
-		"1":[],
-		"2":[{"test":1,"question":10}], //q10 is not hard
+		"1":[{"test":1,"question":10}], //q10 is not hard
+		"2":[{"test":1,"question":23}],
 		"3":[]
 	},
 	"4":{
 		"1":[{"test":1,"question":3}],
 		"2":[{"test":1,"question":5},{"test":1,"question":11}],
-		"3":[{"test":1,"question":7}]
+		"3":[{"test":1,"question":7},{"test":1,"question":26}]
 	},
 	"5":{
 		"1":[{"test":1,"question":18}],
 		"2":[{"test":1,"question":8},{"test":1,"question":15}],
-		"3":[{"test":1,"question":19}]
+		"3":[{"test":1,"question":19},{"test":1,"question":25}]
 	},
 	"6":{
 		"1":[{"test":1,"question":13},{"test":1,"question":14}],
-		"2":[{"test":1,"question":6}],
-		"3":[]
+		"2":[{"test":1,"question":6},{"test":1,"question":28},{"test":1,"question":29}],
+		"3":[{"test":1,"question":27}]
 	},
 	"7":{
 		"1":[{"test":1,"question":12}], //q12 is really omega ez if im not stupid
@@ -53,7 +53,7 @@ Unit 10: Recursion
 		"3":[]
 	},
 	"9":{
-		"1":[{"test":1,"question":15}],
+		"1":[{"test":1,"question":15},{"test":1,"question"227}],
 		"2":[{"test":1,"question":1}],
 		"3":[{"test":1,"question":17}]
 	},
