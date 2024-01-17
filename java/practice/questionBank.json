@@ -20,20 +20,20 @@ Unit 10: Recursion
 	"2":{
 		"1":[{"test":1,"question":2},{"test":1,"question":4}],
 		"2":[{"test":1,"question":24}],
-		"3":[]
+		"3":[{"test":1,"question":30}]
 	},
 	"3":{
 		"1":[{"test":1,"question":10}], //q10 is not hard
 		"2":[{"test":1,"question":23}],
-		"3":[]
+		"3":[{"test":1,"question":35}]
 	},
 	"4":{
 		"1":[{"test":1,"question":3}],
-		"2":[{"test":1,"question":5},{"test":1,"question":11}],
+		"2":[{"test":1,"question":5},{"test":1,"question":11},{"test":1,"question":31}],
 		"3":[{"test":1,"question":7},{"test":1,"question":26}]
 	},
 	"5":{
-		"1":[{"test":1,"question":18}],
+		"1":[{"test":1,"question":18},{"test":1,"question":32},{"test":1,"question":34}],
 		"2":[{"test":1,"question":8},{"test":1,"question":15}],
 		"3":[{"test":1,"question":19},{"test":1,"question":25}]
 	},
@@ -43,8 +43,8 @@ Unit 10: Recursion
 		"3":[{"test":1,"question":27}]
 	},
 	"7":{
-		"1":[{"test":1,"question":12}], //q12 is really omega ez if im not stupid
-		"2":[{"test":1,"question":21}], //q21 is sorting algorithm, putting in arraylist unit...
+		"1":[{"test":1,"question":33},{"test":1,"question":12}], //q12 is really omega ez if im not stupid
+		"2":[{"test":1,"question":21},{"test":1,"question":36}], //q21 is sorting algorithm, putting in arraylist unit...
 		"3":[]
 	},
 	"8":{
