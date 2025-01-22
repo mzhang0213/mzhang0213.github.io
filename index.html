@@ -52,10 +52,10 @@
     }
   </style>
 </head>
-<body class="bg-gray-900" onscroll="(function(){if(window.scrollY>10)document.getElementById('navbar').style.backgroundColor='rgba(0,0,0,1)'; else if (window.scrollY<10)document.getElementById('navbar').style.backgroundColor='rgba(0,0,0,0.5)'})()">
+<body class="bg-gray-900" onscroll="(function(){if(window.scrollY>10){document.getElementById('navbar').style.backgroundColor='rgba(0,0,0,1)';document.getElementById('navbar').style.height='75px';}else if (window.scrollY<10){document.getElementById('navbar').style.backgroundColor='rgba(0,0,0,0.5)';document.getElementById('navbar').style.height='fit-content';}})()">
   <!--navbar-->
-  <nav id="navbar" class="z-50 flex items-center justify-between flex-wrap p-2 w-screen fixed pr-4" style="font-family: 'Merriweather';transition: background-color 200ms linear; background-color:rgba(0,0,0,0.5)">
-    <div class="flex items-center flex-shrink-0 text-white mr-6" style="cursor:pointer;" onclick="(function(){window.location=window.location.origin+'/bobabyte/'})()">
+  <nav id="navbar" class="z-50 flex items-center justify-between flex-wrap w-screen fixed px-4" style="font-family: 'Merriweather';transition: background-color,height 200ms linear; background-color:rgba(0,0,0,0.5)">
+    <div id="navItemLogo" class="h-full flex items-center flex-shrink-0 text-white mr-6" style="cursor:pointer;" onclick="(function(){window.location=window.location.origin+'/bobabyte/'})()">
       <img class="h-8 mr-2" id="logo" src="./logo.png">
       <button class="text-xl tracking-tight">Michael Zhang (idfk if this gud), (what fucking logo)</span>
     </div>
@@ -64,8 +64,8 @@
         <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
       </button>
     </div>
-    <div id="navItemContainer" class="w-full block flex-grow md:flex md:items-center md:justify-end md:w-auto text-sm">
-      <button onclick="(function(){window.location=window.location.origin+'/bobabyte/'})()" class="block mt-4 md:inline-block md:mt-0 text-gray-200 hover:text-white mr-4"><b style="text-decoration:underline;">Home</b></button>
+    <div id="navItemContainer" class="navItem w-full h-full block flex-grow md:flex md:items-center md:justify-end md:w-auto text-sm">
+      <button onclick="(function(){window.location=window.location.origin+'/'})()" class="px-3 mr-2 rounded-xl block md:inline-block md:mt-0 text-gray-300" style="font-size:15px;height:36px;transition:background-color,height 100ms cubic-bezier(0.165, 0.84, 0.44, 1);"><b style="text-decoration:underline;">Home</b></button>
       <!--
       <button id="navBarProjects" onclick="(function(){window.location=window.location.origin+'/bobabyte/projects/'})()" class="block mt-4 md:inline-block md:mt-0 text-gray-200 hover:text-white mr-4" style="display:none;"><b>Projects</b></button>
       <button id="myProjectButton" onclick="(function(){window.location=window.location.origin+'/bobabyte/submit/'})()" class="block mt-4 md:inline-block md:mt-0 text-gray-200 hover:text-white mr-4" style="display:none;"><b>My Project</b></button>
@@ -81,69 +81,12 @@
     </div>
   </nav>
 
-  <script>
-
-    //check for account presence
-    if (localStorage.getItem("platform-username")==null){
-      alert("You are using the platform as guest.\nSign in to your BobaByte account with the username on your badge to access the platform!");
-      gebi("userButton").innerHTML="Guest";
-    }else{
-      gebi("userButton").innerHTML="Hi "+localStorage.getItem("platform-first")+"!";
-    }
-
-    //join group button
-    if (localStorage.getItem("platform-group")==null){
-      gebi("group").innerHTML="Join your group";
-      gebi("group").onclick=function(){window.location=window.location.origin+'/bobabyte/group/'}
-    }else{
-      gebi("group").innerHTML=localStorage.getItem("platform-group");
-      gebi("group").addEventListener("click",function(){
-        window.location=window.location.origin+'/bobabyte/team';
-      })
-    }
-
-    if (Date.now()>1729980000000){
-      gebi("navBarProjects").style.display="";
-    }
-
-    //project submission button
-    var now = new Date().getTime();
-    if (now>1693249200000){
-      //show proj submit
-      gebi("myProjectButton").style.display="";
-    }
-    if (now>1693263600000){
-      //hide proj submit after deadline
-      gebi("myProjectButton").style.display="none";
-    }
-    if (now>1693265400000){
-      gebi("myProjectButton").style.display="";
-      gebi("voteButton").style.display="";
-    }
-
-    //remove member from group
-    function unregisterGroup(){
-      if (localStorage.getItem("platform-group")!==null){
-        var req = new XMLHttpRequest();
-        var body = {
-          user:localStorage.getItem("platform-username"),
-          id:localStorage.getItem("platform-group-id")
-        }
-        req.open("POST",window.location.origin+"/platform-removeGroup");
-        req.setRequestHeader('Content-Type', 'application/json;charset=UTF-8')
-        req.send(JSON.stringify(body));
-        req.addEventListener("readystatechange", ()=>{
-          if (req.status === 200 && req.readyState === 4) {
-            var body = JSON.parse(req.responseText);
-          } else if (req.readyState === 4){
-            console.log("reeeeeeee err new acc creation: "+req.responseText);
-            alert("please ask michael for help oh noes")
-          }
-        })
-      }
-    }
-  </script>
   <style>
+    .navItem:hover{
+      color:white;
+      background-color:rgb(41, 41, 41);
+      height:44px;
+    }
     #user {
       position:relative;
       display:inline-block;
