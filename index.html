@@ -65,7 +65,7 @@
       </button>
     </div>
     <div id="navItemContainer" class="w-full h-full block flex-grow md:flex md:items-center md:justify-end md:w-auto text-sm">
-      <button onclick="(function(){window.location=window.location.origin+'/'})()" class="navItem px-3 mr-2 rounded-xl block md:inline-block md:mt-0 text-gray-300"><b style="text-decoration:underline;">Home</b></button>
+      <button onclick="(function(){window.location=window.location.origin+'/'})()" class="navItem px-3 py-2 mr-2 rounded-xl block md:inline-block md:mt-0 text-gray-300"><b style="text-decoration:underline;">Home</b></button>
       <!--
       <button id="navBarProjects" onclick="(function(){window.location=window.location.origin+'/bobabyte/projects/'})()" class="block mt-4 md:inline-block md:mt-0 text-gray-200 hover:text-white mr-4" style="display:none;"><b>Projects</b></button>
       <button id="myProjectButton" onclick="(function(){window.location=window.location.origin+'/bobabyte/submit/'})()" class="block mt-4 md:inline-block md:mt-0 text-gray-200 hover:text-white mr-4" style="display:none;"><b>My Project</b></button>
@@ -84,20 +84,21 @@
   <style>
     .navItem{
       font-size:15px;
-      height:30px;
+      height:20px;
       background-color:rgba(0, 0, 0, 0.5);
-      transition:background-color,height,padding-left,padding-right 101ms cubic-bezier(.46,0,.21,1.01);
-      -webkit-transition: background-color,height,padding-left,padding-right 101ms cubic-bezier(.46,0,.21,1.01);
-      -ms-transition: background-color,height,padding-left,padding-right 101ms cubic-bezier(.46,0,.21,1.01);
+      transition:background-color,padding-left,padding-right,padding-top,padding-bottom 301ms cubic-bezier(.46,0,.21,1.01);
+      -webkit-transition: background-color,padding-left,padding-right,padding-top,padding-bottom 301ms cubic-bezier(.46,0,.21,1.01);
+      -ms-transition: background-color,padding-left,padding-right,padding-top,padding-bottom 301ms cubic-bezier(.46,0,.21,1.01);
     }
     .navItem:hover{
       background-color:rgba(44, 44, 44,1);
-      height:44px;
       padding-left:20px;
       padding-right:20px;
-      transition:background-color,height,padding-left,padding-right 101ms cubic-bezier(.46,0,.21,1.01);
-      -webkit-transition: background-color,height,padding-left,padding-right 101ms cubic-bezier(.46,0,.21,1.01);
-      -ms-transition: background-color,height,padding-left,padding-right 101ms cubic-bezier(.46,0,.21,1.01);
+      padding-top:15px;
+      padding-bottom:15px;
+      transition:background-color,padding-left,padding-right,padding-top,padding-bottom 301ms cubic-bezier(.46,0,.21,1.01);
+      -webkit-transition: background-color,padding-left,padding-right,padding-top,padding-bottom 301ms cubic-bezier(.46,0,.21,1.01);
+      -ms-transition: background-color,padding-left,padding-right,padding-top,padding-bottom 301ms cubic-bezier(.46,0,.21,1.01);
     }
     #user {
       position:relative;
